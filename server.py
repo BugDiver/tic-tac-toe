@@ -8,6 +8,8 @@ class myHandler(BaseHTTPRequestHandler):
 	def do_GET(self):
 		if self.path=="/":
 			self.path="public/index.html"
+		elif self.path=="/game":
+			self.path="public/game.html"
 		else:
 			self.path = "public/"+self.path
 
