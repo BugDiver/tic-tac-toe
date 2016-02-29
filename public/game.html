@@ -2,9 +2,45 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
+	<link rel="stylesheet" href="styles/game.css">
+	<script src="js/jquery.js"></script>
+	<script src="js/ttt.js"></script>
 	<title>TTT</title>
 </head>
 <body>
-	<h1>we'll play our game here</h1>
+	<div class="container ">
+		<p id="welcome">Tic-Tac-Toe</p>
+		<div class="chooseLetter">
+			<p>what will u choose?</p>
+			<select name="" id="letter">
+				<option value="X">X</option>
+				<option value="O">O</option>
+			</select>
+			<input type="submit" value="submit" id="letterSelection">
+		</div>
+		<div class="notification hidden">
+			<h3>you have choosed : </h3>
+			<input type="submit" value="play">
+		</div>
+		<div class="board hidden">
+			<table class="matrix" border="3">
+				<tr>
+					<td id="1"></td>
+					<td id="2"></td>
+					<td id="3"></td>
+				</tr>
+				<tr>
+					<td id="4"></td>
+					<td id="5"></td>
+					<td id="6"></td>
+				</tr>
+				<tr>
+					<td id="7"></td>
+					<td id="8"></td>
+					<td id="9"></td>
+				</tr>
+			</table>
+		</div>
+	</div>
 </body>
 </html>
