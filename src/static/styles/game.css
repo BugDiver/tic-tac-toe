@@ -1,0 +1,29 @@
+body{
+	font-family: sans-serif;
+	width: 100%;
+	background-color: #8B99A2;
+}
+.container{
+	text-align: center;
+}
+#welcome{
+	text-align: center;
+	font-family: sans-serif;
+	font-size: 50px;
+	font-weight: 500;
+}
+.chooseLetter{
+	font-size: 20px;
+}
+.board{
+	text-align: center;
+	width: 100%;	
+}
+table{
+	width:30%;
+	height: 500px;
+	margin:auto;	
+}
+.hidden{
+	visibility: hidden;
+}
