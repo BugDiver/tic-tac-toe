@@ -1,6 +1,6 @@
 import unittest
 
-from src.game import Game
+from src.lib.game import Game
 
 
 class TestGameTest(unittest.TestCase):
@@ -82,7 +82,9 @@ class TestGameTest(unittest.TestCase):
         game.makeMove(1,'O')
         game.makeMove(3,'O')
         self.assertEquals(game.getBotMove(),2)
-
+    def test_getInitialTurn_should_choose_random_turn_between_player_and_bot(self):
+        game = Game('X')
+        self.assertTrue(game.getInitialMove() in ['Player' ,'Bot'])
 
 if __name__ == "__main__":
     unittest.main()
