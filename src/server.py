@@ -1,38 +1,9 @@
-# from os import getcwd
-# from BaseHTTPServer import BaseHTTPRequestHandler, HTTPServer
-#
-# PORT_NUMBER = 8080
-#
-#
-# class MyHandler(BaseHTTPRequestHandler):
-#     def do_GET(self):
-#         if self.path == "/":
-#             self.path = "templates/index.html"
-#         elif self.path == "/game":
-#             self.path = "templates/game.html"
-#         else:
-#             self.path =""+ self.path
-#
-#         try:
-#             file = open(getcwd() + '/' + self.path)
-#             self.send_response(200)
-#             self.end_headers()
-#             self.wfile.write(file.read())
-#             file.close()
-#             return
-#
-#         except IOError:
-#             self.send_error(404, 'File Not Found: %s' % self.path)
-#
-#
-# server = HTTPServer(('', PORT_NUMBER), MyHandler)
-# print 'Started httpserver on port ', PORT_NUMBER
-# server.serve_forever();
-
 from src.lib.game import Game
-from flask import Flask, url_for, render_template, request
+
+from flask import Flask, render_template, request, jsonify
 
 app = Flask(__name__)
+app.debug=True
 game = None
 
 
@@ -49,8 +20,35 @@ def show_game():
 @app.route('/letter', methods=['GET', 'POST'])
 def giveCommentResponse():
     if request.method == 'POST':
+        global game
         game = Game(request.form['letter'])
         return request.form['letter']
+
+
+@app.route('/play')
+def play():
+    turn = game.getInitialMove()
+    if turn == 'Bot':
+        game.makeMove(game.getBotMove(), game.getBotSymbol())
+    return jsonify({'board': game.getBoard()})
+
+
+@app.route('/playerMove',methods=['GET','POST'])
+def takePlayerMove():
+    if request.method == 'POST':
+        game.makeMove(int(request.form['move']),game.getUserSymbol())
+        game.makeMove(game.getBotMove(), game.getBotSymbol())
+        res = {'over' : False,'board' : game.getBoard()}
+        if game.isWinner(game.getBotSymbol()):
+            res['over'] = True
+            res['winner'] = 'computer'
+        if game.isWinner(game.getUserSymbol()):
+            res['over'] = True
+            res['winner'] = 'player'
+        if game.isBoardFull():
+            res['over'] = True
+            res['tie'] = True
+        return jsonify(res)
 
 
 if __name__ == '__main__':

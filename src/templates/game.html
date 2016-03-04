@@ -1,46 +1,47 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<meta charset="UTF-8">
-	<link rel="stylesheet" href="../static/styles/game.css">
-	<script src="../static/js/jquery.js"></script>
-	<script src="../static/js/ttt.js"></script>
-	<title>TTT</title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="../static/styles/game.css">
+    <link rel="icon" href="../static/img/images.jpg" type="image/jpg" sizes="16x16">
+    <script src="../static/js/jquery.js"></script>
+    <script src="../static/js/ttt.js"></script>
+    <title>TTT</title>
 </head>
 <body>
-	<div class="container ">
-		<p id="welcome">Tic-Tac-Toe</p>
-		<div class="chooseLetter">
-			<p>what will u choose?</p>
-			<select name="" id="letter">
-				<option value="X">X</option>
-				<option value="O">O</option>
-			</select>
-			<input type="submit" value="submit" id="letterSelection">
-		</div>
-		<div class="notification hidden">
-			<h3></h3>
-			<input type="submit" value="play">
-		</div>
-		<div class="board hidden">
-			<table class="matrix" border="3">
+<div class="container ">
+    <p id="welcome">Tic-Tac-Toe</p>
+    <div class="chooseLetter">
+        <p>what will u choose?</p>
+        <select name="" id="letter">
+            <option value="X">X</option>
+            <option value="O">O</option>
+        </select>
+        <input type="submit" value="submit" id="letterSelection">
+    </div>
+    <div class="notification hidden">
+        <h3></h3>
+        <input type="submit" value="play">
+    </div>
+    <div class="board hidden">
+        <table class="matrix" border="3">
 				<tr>
-					<td id="1">..</td>
-					<td id="2">...</td>
-					<td id="3">...</td>
+					<td id="1" onclick="takePlayerMove(this.id)"></td>
+					<td id="2" onclick="takePlayerMove(this.id)"></td>
+					<td id="3" onclick="takePlayerMove(this.id)"></td>
 				</tr>
 				<tr>
-					<td id="4">...</td>
-					<td id="5">...</td>
-					<td id="6">...</td>
+					<td id="4" onclick="takePlayerMove(this.id)"></td>
+					<td id="5" onclick="takePlayerMove(this.id)"></td>
+					<td id="6" onclick="takePlayerMove(this.id)"></td>
 				</tr>
 				<tr>
-					<td id="7">...</td>
-					<td id="8">...</td>
-					<td id="9">...</td>
+					<td id="7" onclick="takePlayerMove(this.id)"></td>
+					<td id="8" onclick="takePlayerMove(this.id)"></td>
+					<td id="9" onclick="takePlayerMove(this.id)"></td>
 				</tr>
 			</table>
-		</div>
-	</div>
+    </div>
+</div>
 </body>
 </html>

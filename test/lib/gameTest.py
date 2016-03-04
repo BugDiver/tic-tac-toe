@@ -73,18 +73,28 @@ class TestGameTest(unittest.TestCase):
 
     def test_getBotMove_should_block_if_player_can_win_in_next_round(self):
         game = Game('X')
-        game.makeMove(1,'X')
-        game.makeMove(3,'X')
-        self.assertEquals(game.getBotMove(),2)
+        game.makeMove(1, 'X')
+        game.makeMove(3, 'X')
+        self.assertEquals(game.getBotMove(), 2)
 
     def test_getBotMove_should_try_to_be_winner_if_it_can(self):
         game = Game('X')
-        game.makeMove(1,'O')
-        game.makeMove(3,'O')
-        self.assertEquals(game.getBotMove(),2)
+        game.makeMove(1, 'O')
+        game.makeMove(3, 'O')
+        self.assertEquals(game.getBotMove(), 2)
+
     def test_getInitialTurn_should_choose_random_turn_between_player_and_bot(self):
         game = Game('X')
-        self.assertTrue(game.getInitialMove() in ['Player' ,'Bot'])
+        self.assertTrue(game.getInitialMove() in ['Player', 'Bot'])
+
+    def test_getBoard_should_give_array_representation_of_game(self):
+        game = Game('X')
+        self.assertListEqual(game.getBoard(), ['...'] * 10)
+        game.makeMove(1, 'X')
+        self.assertListEqual(game.getBoard(), ['...', 'X', '...', '...', '...', '...', '...', '...', '...', '...'])
+        game.makeMove(game.getBotMove(), game.getBotSymbol())
+        self.assertListEqual(game.getBoard(), ['...', 'X', '...', '...', '...', 'O', '...', '...', '...', '...'])
+
 
 if __name__ == "__main__":
     unittest.main()
